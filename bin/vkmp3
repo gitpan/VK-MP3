@@ -12,11 +12,13 @@ use Text::Unidecode;
 use MP3::Info;
 use VK::MP3;
 
-use constant VERSION => '0.10.3';
-use constant DEFAULT_LOGIN => 'billy@microsoft.com';
-use constant DEFAULT_PASSWORD => 'qwerty';
-use constant DEFAULT_SAVE_DIR => './';
-use constant DEFAULT_MAX_SHOW => 20;
+use constant {
+    VERSION => '0.10.3',
+    DEFAULT_LOGIN => 'billy@microsoft.com',
+    DEFAULT_PASSWORD => 'qwerty',
+    DEFAULT_SAVE_DIR => './',
+    DEFAULT_MAX_SHOW => 20,
+  };
 
 my ($login, $password, $save_dir, $max_show);
 for my $x (qw/login password save_dir max_show/) {

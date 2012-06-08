@@ -9,7 +9,7 @@ use LWP::Protocol::https;
 use HTML::Entities;
 use URI::Escape;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 sub new {
   my ($class, %args) = @_;

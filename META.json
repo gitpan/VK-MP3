@@ -35,7 +35,9 @@
             "HTML::Entities" : "3.69",
             "LWP" : "6.04",
             "LWP::Protocol::https" : "6.03",
+            "MP3::Info" : "1.24",
             "Test::Mock::LWP" : "0.06",
+            "Text::Unidecode" : "0.04",
             "URI::Escape" : "3.31",
             "perl" : "5.008008"
          }
@@ -54,5 +56,5 @@
          "url" : "https://bitbucket.org/afiskon/pl-vkmp3"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }

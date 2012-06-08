@@ -1,5 +1,8 @@
 Revision history for Perl extension VK::MP3.
 
+0.03  Fri Jun  8 10:27:00 2012
+	- minor changes
+
 0.02  Fri Jun  8 08:32:00 2012
 	- minor changes (POD, Makefile.PL, etc)
 
