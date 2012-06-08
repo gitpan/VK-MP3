@@ -4,6 +4,6 @@ MANIFEST
 README
 t/all.t
 lib/VK/MP3.pm
-bin/vkmp3.pl
+bin/vkmp3
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)

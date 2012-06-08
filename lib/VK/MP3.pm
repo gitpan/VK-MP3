@@ -9,7 +9,7 @@ use LWP::Protocol::https;
 use HTML::Entities;
 use URI::Escape;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 sub new {
   my ($class, %args) = @_;
@@ -100,7 +100,7 @@ __END__
 
 =head1 NAME
 
-VK::MP3 - search for mp3 on vk.com
+VK::MP3 - searches for mp3 on vkontakte.ru, also known as vk.com.
 
 =head1 SYNOPSIS
 
@@ -115,7 +115,9 @@ VK::MP3 - search for mp3 on vk.com
 
 =head1 DESCRIPTION
 
-Really simple module, wich uses regular expressions and LWP.
+B<VK::MP3> helps you to find direct URL's of audio files on vk.com (via regular expressions and LWP).
+
+This package also includes B<vkmp3> utility, that allows you to download found mp3.
 
 =head1 METHODS
 
@@ -123,7 +125,7 @@ Really simple module, wich uses regular expressions and LWP.
 
     my $vk = VK::MP3->new(login => $login, password => $password)
 
-Constructs a new C<VK::MP3> object and login to vk.com. Throws exception in case of any error.
+Constructs a new C<VK::MP3> object and logs on vk.com. Throws exception in case of any error.
 
 =head2 C<search>
 
@@ -131,17 +133,41 @@ Constructs a new C<VK::MP3> object and login to vk.com. Throws exception in case
 
 Results, found by $query.
 
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc VK::MP3
+
+You can also look for information at:
+
+=over 3
+
+=item * BitBucket
+
+L<https://bitbucket.org/afiskon/pl-vkmp3>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/VK-MP3>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/VK-MP3>
+
+=back
+
 =head1 SEE ALSO
 
-L<VKontakte::API>, L<LWP::UserAgent>.
+L<VK>, L<VKontakte::API>, L<LWP::UserAgent>.
 
 =head1 AUTHOR
 
-Alexandr A Alexeev, <afiskon@gmail.com>
+Alexandr Alexeev, <eax at cpan.org> (L<http://eax.me/>)
 
 =head1 COPYRIGHT
 
-Copyright 2011-2012 by Alexandr A Alexeev
+Copyright 2011-2012 by Alexandr Alexeev
 
 This library is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

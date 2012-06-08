@@ -1,14 +1,14 @@
 ---
-abstract: 'search for mp3 on vk.com'
+abstract: 'searches for mp3 on vkontakte.ru, also known as vk.com.'
 author:
-  - 'Alexandr A Alexeev <afiskon@gmail.com>'
+  - 'Alexandr Alexeev <eax@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 0
 configure_requires:
   ExtUtils::MakeMaker: 0
 dynamic_config: 1
 generated_by: 'ExtUtils::MakeMaker version 6.62, CPAN::Meta::Converter version 2.112150'
-license: unknown
+license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
@@ -23,4 +23,10 @@ requires:
   LWP::Protocol::https: 6.03
   Test::Mock::LWP: 0.06
   URI::Escape: 3.31
-version: 0.01
+  perl: 5.008008
+resources:
+  bugtracker: https://bitbucket.org/afiskon/pl-vkmp3/issues
+  homepage: http://eax.me/vk-get-mp3/
+  license: http://dev.perl.org/licenses/
+  repository: https://bitbucket.org/afiskon/pl-vkmp3
+version: 0.02
