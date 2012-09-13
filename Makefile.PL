@@ -25,8 +25,8 @@ WriteMakefile(
       resources => {
         homepage    => 'http://eax.me/vk-get-mp3/',
         license     => 'http://dev.perl.org/licenses/',
-        repository  => 'https://bitbucket.org/afiskon/pl-vkmp3',
-        bugtracker  => 'https://bitbucket.org/afiskon/pl-vkmp3/issues'
+        repository  => 'https://github.com/afiskon/p5-vk-mp3',
+        bugtracker  => 'https://github.com/afiskon/p5-vk-mp3/issues'
       },
     }
   );

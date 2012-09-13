@@ -1,5 +1,11 @@
-VK-MP3 version 0.01
-===================
+VK::MP3
+=======
+
+DEPENDENCIES
+
+To install all dependencies type the following:
+
+   cpan App::cpanminus && cpanm --installdeps .
 
 INSTALLATION
 
@@ -9,16 +15,6 @@ To install this module type the following:
    make
    make test
    make install
-
-DEPENDENCIES
-
-This module requires these other modules and libraries:
-
-LWP
-LWP::Protocol::https
-HTML::Entities
-URI::Escape
-Test::Mock::LWP
 
 COPYRIGHT AND LICENCE
 

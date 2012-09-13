@@ -1,5 +1,9 @@
 Revision history for Perl extension VK::MP3.
 
+0.04  Thu Sep 13 17:45:00 2012 
+	- regexps fixed
+	- moved to GitHub
+
 0.03  Fri Jun  8 10:27:00 2012
 	- minor changes
 
