@@ -32,7 +32,9 @@
       },
       "runtime" : {
          "requires" : {
+            "Encode" : "2.47",
             "HTML::Entities" : "3.69",
+            "JSON::XS" : "2.32",
             "LWP" : "6.04",
             "LWP::Protocol::https" : "6.03",
             "MP3::Info" : "1.24",
@@ -56,5 +58,5 @@
          "url" : "https://github.com/afiskon/p5-vk-mp3"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }

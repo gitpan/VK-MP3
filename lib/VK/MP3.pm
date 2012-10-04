@@ -8,8 +8,10 @@ use LWP;
 use LWP::Protocol::https;
 use HTML::Entities;
 use URI::Escape;
+use JSON::XS qw/decode_json/;
+use Encode;
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 sub new {
   my ($class, %args) = @_;
@@ -43,6 +45,40 @@ sub search {
   return \@rslt;
 }
 
+sub get_playlist {
+  my ($self) = @_;
+  my $res;
+
+  $res = $self->{ua}->post('http://vk.com/audio', {
+        act => 'load_audios_silent',
+        al => 1,
+        gid => 0,
+        id => $self->{id},
+      }, 
+    ); 
+  die 'LWP: '.$res->status_line unless $res->is_success;
+
+  my $json_str = (split /<!>/, $res->decoded_content)[5];
+  $json_str =~ s/'/"/gs;
+  $json_str = Encode::encode('utf-8', $json_str);
+  my $json = decode_json($json_str);
+  return 'Invalid response' unless defined $json->{all} && ref($json->{all}) eq 'ARRAY';
+
+  my @rslt;
+  for my $item(@{$json->{all}}) {
+    next unless ref $item eq 'ARRAY' && scalar @{$item} > 7;
+    my $name = decode_entities($item->[5].' – '.$item->[6]);
+    $name =~ s/(^\s+|\s+$)//g;
+    my $rslt_item = {
+        name => $name,
+        duration => $item->[3],
+        link => $item->[2],
+      };
+    push @rslt, $rslt_item;
+  }
+  return \@rslt;
+}
+
 sub _parse_found_item {
   my ($self, $str) = @_;
   my ($name) = $str =~ m{<div class="title_wrap fl_l".*?>(.*?)</div>}si;
@@ -71,8 +107,13 @@ sub _login {
       email => $self->{login},
       pass => $self->{password},
     });  
-  return 0 unless $res->is_success;
-  return $res->decoded_content =~ m#<a[^>]+href="https://login\.vk\.com/\?act=logout&hash=#i;
+
+  if(  $res->is_success &&
+      ($res->decoded_content =~ /var\s+vk\s*=\s*\{[^\{\}]*?id\s*\:\s*(\d+)/i) ) {
+    $self->{id} = $1;
+    return 1;
+  }
+  return 0;
 }
 
 sub _create_ua {
@@ -107,9 +148,14 @@ VK::MP3 - searches for mp3 on vkontakte.ru, also known as vk.com.
     use VK::MP3;
      
     my $vk = VK::MP3->new(login => 'user', password => 'secret');
+    
     my $rslt = $vk->search('Nightwish');
-
     for (@{$rslt}) {
+        # $_->{name}, $_->{duration}, $_->{link}
+    }
+    
+    my $playlist = $vk->get_playlist;
+    for (@{$playlist}) {
         # $_->{name}, $_->{duration}, $_->{link}
     }
 
@@ -132,6 +178,12 @@ Constructs a new C<VK::MP3> object and logs on vk.com. Throws exception in case 
     my $rslt = $vk->search($query)
 
 Results, found by $query.
+
+=head2 C<get_playlist>
+
+    my $rslt = $vk->get_playlist()
+
+Returns your playlist.
 
 =head1 SUPPORT
 
