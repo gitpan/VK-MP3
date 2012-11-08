@@ -11,7 +11,7 @@ use URI::Escape;
 use JSON::XS qw/decode_json/;
 use Encode;
 
-our $VERSION = 0.06;
+our $VERSION = 0.08;
 
 sub new {
   my ($class, %args) = @_;
@@ -109,7 +109,8 @@ sub _login {
     });  
 
   if(  $res->is_success &&
-      ($res->decoded_content =~ /var\s+vk\s*=\s*\{[^\{\}]*?id\s*\:\s*(\d+)/i) ) {
+      ($res->decoded_content =~ /var\s+vk\s*=\s*\{[^\{\}]*?id\s*\:\s*(\d+)/i
+       || $res->decoded_content =~ m#login\.vk\.com/\?act=logout#i ) ) {
     $self->{id} = $1;
     return 1;
   }
@@ -120,7 +121,6 @@ sub _create_ua {
   my $ua = LWP::UserAgent->new();
 
   push @{ $ua->requests_redirectable }, 'POST';
-  $ua->ssl_opts(verify_hostname => 0);
   $ua->cookie_jar( {} );
 
   return $ua;
@@ -163,7 +163,7 @@ VK::MP3 - searches for mp3 on vkontakte.ru, also known as vk.com.
 
 B<VK::MP3> helps you to find direct URL's of audio files on vk.com (via regular expressions and LWP).
 
-This package also includes B<vkmp3> utility, that allows you to download found mp3.
+This package also includes B<vkmp3> utility, which allows you download found mp3 (or all files from your playlist).
 
 =head1 METHODS
 
