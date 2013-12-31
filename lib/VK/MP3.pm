@@ -11,7 +11,7 @@ use URI::Escape;
 use JSON::XS qw/decode_json/;
 use Encode;
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 sub new {
   my ($class, %args) = @_;
@@ -54,6 +54,7 @@ sub get_playlist {
         al => 1,
         gid => 0,
         id => $self->{id},
+        please_dont_ddos => '2',
       }, 
     ); 
   die 'LWP: '.$res->status_line unless $res->is_success;

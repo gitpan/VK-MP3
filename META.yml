@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               VK-MP3
-version:            0.08
+version:            0.09
 abstract:           searches for mp3 on vkontakte.ru, also known as vk.com.
 author:
     - Alexandr Alexeev <eax@cpan.org>
